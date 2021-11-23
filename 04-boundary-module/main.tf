@@ -6,7 +6,8 @@ terraform {
     }
   }
 }
-
+variable "vault_addr" {}
+variable "vault_boundary_token" {}
 provider "boundary" {
   addr                            = "http://:9200"
   auth_method_id                  = "ampw_1234567890" # changeme
@@ -60,4 +61,23 @@ resource "boundary_target" "mysql_target" {
   scope_id     = boundary_scope.project.id
   host_source_ids =  [ for hs in boundary_host_set.eks_hosts: hs.id if hs.name == each.value ]
   default_port = "3306"
+  application_credential_source_ids = [
+    boundary_credential_library_vault.mysql_creds.id
+  ]
+}
+
+resource "boundary_credential_store_vault" "vault_hcp" {
+  name        = "vault-hcp"
+  description = "Vault to pull our secrets from"
+  address     = var.vault_addr
+  token       = var.vault_boundary_token
+  namespace   = "admin"
+  scope_id    = boundary_scope.project.id
+}
+resource "boundary_credential_library_vault" "mysql_creds" {
+  name                = "mysql-creds"
+  description         = "Credentials for mysql"
+  credential_store_id = boundary_credential_store_vault.vault_hcp.id
+  path                = "database/creds/readonly"
+  http_method         = "GET"
 }
