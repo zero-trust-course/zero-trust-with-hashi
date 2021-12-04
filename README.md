@@ -47,31 +47,15 @@ export AWS_SECRET_ACCESS_KEY=""
 
 5. Copy and insert your access key and secret access keys to the proper values
 
-6. Go to EC2 service
+6. Open your terminal window (Following commands assume you are working with MacOS/Linux with x86 CPU architecture)
 
-7. Click on Launch Instances
-
-8. Click on Community AMIs
-
-9. Type in a search bar zerotrust-course
-
-10. Choose zerotrust-course ami and click select
-
-11. Choose t3.medium instance and click "Next: Configure instance details"
-
-12. Ensure you deploy in to default VPC / subnet with access to the internets and Public IP assignment
-
-13. Click Next until you reach "step 6: configure security group"
-
-14. Ensure your ssh is open from your ip (or anywhere if you're lazy)
-
-15. Click on "Review and Launch"
-
-16. Click on "Launch"
-
-17. Choose existing key pair / create new key pair - download it and chmod the key pair to 600
-
-18. Click that you acknowledge ... and click "Launch Instances"
+7. Execute the following commands
+```bash
+git clone git@github.com:zero-trust-course/zero-trust-with-hashi.git
+cd zero-trust-with-hashi
+docker build -f Dockerfile.amd64 . -t zero-trust
+docker run -it zero-trust:latest
+```
 
 19. In your browser go to https://terraform.io
 
