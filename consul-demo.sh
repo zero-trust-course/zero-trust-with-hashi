@@ -34,8 +34,6 @@ pe 'echo $DATACENTER && \
   echo $RETRY_JOIN && \
   echo $K8S_HTTP_ADDR'
 
-p 'Did I mentioned that Terasky is hiring?'
-
 cat > config.yaml << EOF
 global:
   name: consul
