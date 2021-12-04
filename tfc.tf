@@ -6,7 +6,7 @@ resource "tfe_workspace" "terraform_cloud_seed" {
   auto_apply          = true
   global_remote_state = true
   vcs_repo {
-    identifier     = "${var.github_username}/2021-Hashicorp-Terrasky-Workshop"
+    identifier     = "${var.github_username}/zero-trust-with-hashi"
     oauth_token_id = var.oauth_token_id
   }
   working_directory = "00-tfc"
