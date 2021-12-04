@@ -29,15 +29,10 @@ This guide assumes you're on linux/Mac, you have github and AWS accounts.
 ```sh
 
 export TF_VAR_tfc_organization_name=""
-
 export TF_VAR_oauth_token_id=""
-
 export TF_VAR_github_username=""
-
 export TF_VAR_tfc_token=""
-
 export AWS_ACCESS_KEY_ID=""
-
 export AWS_SECRET_ACCESS_KEY=""
 
 ```
