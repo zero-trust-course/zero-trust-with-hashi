@@ -1,7 +1,7 @@
 resource "tfe_workspace" "terraform_cloud_seed" {
   name                = "TerraformCloudSeed"
   organization        = var.tfc_organization_name
-  tag_names           = ["devopsdaystlv2021"]
+  tag_names           = ["zerotrust"]
   execution_mode      = "remote"
   auto_apply          = true
   global_remote_state = true

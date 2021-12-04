@@ -1,9 +1,9 @@
 resource "tfe_workspace" "hcp" {
   name         = "HCP"
   organization = var.tfc_organization_name
-  tag_names    = ["devopsdaystlv2021"]
+  tag_names    = ["zerotrust"]
   vcs_repo {
-    identifier     = "${var.github_username}/2021-Hashicorp-Terrasky-Workshop"
+    identifier     = "${var.github_username}/zero-trust-with-hashi"
     oauth_token_id = var.oauth_token_id
   }
   working_directory   = "02-hcp"

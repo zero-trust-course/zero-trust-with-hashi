@@ -12,11 +12,11 @@ provider "boundary" {
   addr                            = "http://:9200"
   auth_method_id                  = "ampw_1234567890" # changeme
   password_auth_method_login_name = "admin"           # changeme
-  password_auth_method_password   = "dodtlv2021"        # changeme
+  password_auth_method_password   = "zerotrust"        # changeme
 }
 resource "boundary_scope" "org" {
-  name                     = "DevOpsDays"
-  description              = "TelAviv2021"
+  name                     = "zerotrust"
+  description              = "Trust noone"
   scope_id                 = "global"
   auto_create_admin_role   = true
   auto_create_default_role = true

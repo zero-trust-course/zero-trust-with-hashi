@@ -1,5 +1,4 @@
-
-# Welcome to DevOpsDayTLV 2021 workshop
+# Welcome to Zero Trust with Hashicorp
 
 ## Intro
 
@@ -60,9 +59,9 @@ export AWS_SECRET_ACCESS_KEY=""
 
 8. Click on Community AMIs
 
-9. Type in a search bar devopsdays
+9. Type in a search bar zerotrust-course
 
-10. Choose devopsdays2021-hashicorp-terasky ami and click select
+10. Choose zerotrust-course ami and click select
 
 11. Choose t3.medium instance and click "Next: Configure instance details"
 
@@ -190,7 +189,7 @@ export AWS_SECRET_ACCESS_KEY=""
 <details>
   <summary>Click to expand!</summary>
   
-1. Broswe to "https://github.com/DevOpsDaysTLV/2021-Hashicorp-Terrasky-Workshop"
+1. Broswe to "https://github.com/zero-trust-course/zero-trust-with-hashi"
 
 2. Click on "fork" in right upper corner
 
@@ -214,9 +213,7 @@ ssh -i <some_key.pem> ubuntu@<public_ipv4>
 
 sudo -i
 
-docker pull devopsdaystlv/2021-hashicorp-terashy-workshop:amd64
-
-docker run -it devopsdaystlv/2021-hashicorp-terashy-workshop:amd64 bash
+#TODO build and run image
 
 ```
 
@@ -285,7 +282,7 @@ bash -x varsets.sh
 
 8. In your Terraform Cloud window refresh the "Variable sets" page, you should find newly created "Variable set"
 
-9. Click on "DevOpsDays2021Workshop" variable set
+#9. Click on "" variable set #TODO variables set name
 
 10. Locate "AWS_ACCESS_KEY_ID" and "AWS_SECRET_ACCESS_KEY" edit and replace the placeholders with proper values from your favorite browser, check "Sensitive" checkbox and "Save variable"
 

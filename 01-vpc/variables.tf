@@ -1,6 +1,6 @@
 variable "name" {
   type    = string
-  default = "devopsdaystlv2021"
+  default = "zerotrust"
 }
 variable "public_subnets" {
   type = list(any)

@@ -34,7 +34,7 @@ module "eks" {
   source = "terraform-aws-modules/eks/aws"
 
   cluster_version                      = "1.21"
-  cluster_name                         = "devopsdaytlv2021"
+  cluster_name                         = "zerotrust"
   vpc_id                               = data.terraform_remote_state.vpc.outputs.vpc_id
   subnets                              = data.terraform_remote_state.vpc.outputs.public_subnets
   worker_additional_security_group_ids = [data.aws_security_group.default.id]

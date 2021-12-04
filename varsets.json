@@ -2,7 +2,7 @@
     "data": {
       "type": "varsets",
       "attributes": {
-        "name": "DevOpsDays2021Workshop",
+        "name": "ZeroTrustCourse",
         "description": "Full of vars and such for mass reuse",
         "is-global": false
       },
