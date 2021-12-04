@@ -10,15 +10,10 @@ During this workshop we provision HCP consul and HCP Vault, VPC, Boundary server
 
 Later we deploy mysql, vault injector, consul catalog sync, consul terraform sync and configure boundary.
 
-  
+
+![alt text](https://github.com/zero-trust-course/zero-trust-with-hashi/blob/main/arch.jpg?raw=true)
 
 This guide assumes you're on linux/Mac, you have github and AWS accounts.
-
-## Prerequisite
-
-This course take multiple assumptions about the student:
-1. Student has AWS account
-2. Student has Github account
 
 ## Steps
 
