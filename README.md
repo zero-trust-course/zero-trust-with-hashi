@@ -240,7 +240,7 @@ bash -x varsets.sh
 
 8. In your Terraform Cloud window refresh the "Variable sets" page, you should find newly created "Variable set"
 
-#9. Click on "" variable set #TODO variables set name
+9. Click on "ZeroTrustCourse" variable set
 
 10. Locate "AWS_ACCESS_KEY_ID" and "AWS_SECRET_ACCESS_KEY" edit and replace the placeholders with proper values from your favorite browser, check "Sensitive" checkbox and "Save variable"
 
