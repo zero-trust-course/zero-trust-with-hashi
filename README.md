@@ -14,7 +14,11 @@ Later we deploy mysql, vault injector, consul catalog sync, consul terraform syn
 
 This guide assumes you're on linux/Mac, you have github and AWS accounts.
 
-  
+## Prerequisite
+
+This course take multiple assumptions about the student:
+1. Student has AWS account
+2. Student has Github account
 
 ## Steps
 
