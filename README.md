@@ -173,27 +173,7 @@ docker run -it zero-trust:latest
 
 3. Choose you personal user as forking destination
 
-4. ** In your AWS console* go to "EC2 service" click on "Instances" and check the box near the instance that was previously started.
-
-5. Copy the "Public IPv4 address"
-
-6. Open terminal and connect to the instance with the key you downloaded/created previously
-
-```sh
-
-ssh -i <some_key.pem> ubuntu@<public_ipv4>
-
-```
-
-7. On the instance perform
-
-```sh
-
-sudo -i
-
-#TODO build and run image
-
-```
+6. Go back to your terminal 
 
 8. Inside container run the following commands to avoid accidental exit/logouts
 
