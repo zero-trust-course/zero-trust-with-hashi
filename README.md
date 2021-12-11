@@ -213,7 +213,7 @@ terraform apply
 
 </details>  
 
-### Setup VPC + EKS
+### Setup VPC + EKS + HCP
 
 <details>
   <summary>Click to expand!</summary>
