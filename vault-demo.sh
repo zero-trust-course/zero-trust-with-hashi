@@ -29,11 +29,10 @@ pe 'export VAULT_PRIVATE_ADDR=$(terraform output --raw vault_private_endpoint_ur
 pe 'echo $VAULT_PRIVATE_ADDR'
 p "Default namespace in hcp is admin"
 pe "export VAULT_NAMESPACE=admin"
-#TODO check all values of status
 pe "vault status"
 
 
-p "Now let's get configmap output and put in in /tmp/kubeconfig but it's in another directory (and state) 03-eks"
+p "Now let's get kubectl_config output and put in in /tmp/kubeconfig but it's in another directory (and state) 03-eks"
 pe "cd ../03-eks"
 [ ! -f remote.tf.bck ] && cp remote.tf remote.tf.bck
 sed "s#\"\"#\"$TF_VAR_tfc_organization_name\"#g" remote.tf.bck > remote.tf
@@ -67,7 +66,6 @@ pe "vault secrets enable database"
 pe "export MYSQL_SVC=\"$(kubectl get services mysql -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}')\""
 
 pe "vault write database/config/mysql plugin_name=mysql-database-plugin connection_url=\"{{username}}:{{password}}@tcp(${MYSQL_SVC}:3306)/\"  allowed_roles=\"readonly\"  username=\"root\" password=\"$ROOT_PASSWORD\""
-#TODO check when dns has propogated
 
 #pe 'vault write -force database/rotate-root/mysql'
 pe "vault write database/roles/readonly db_name=mysql  creation_statements=\"CREATE USER '{{name}}'@'%' IDENTIFIED BY '{{password}}';GRANT SELECT ON *.* TO '{{name}}'@'%';\"  default_ttl=\"1m\"  max_ttl=\"1m\""
@@ -113,18 +111,11 @@ export TOKEN_REVIEW_JWT=$(kubectl get secret \
    $(kubectl get serviceaccount vault -o jsonpath='{.secrets[0].name}') \
    -o jsonpath='{ .data.token }' | base64 --decode)
 
-#p "KUBE_CA_CERT is a CA certificate of our kubernetes"
-
-#pe "kubectl get secret  $(kubectl get serviceaccount vault -o jsonpath='{.secrets[0].name}') -o jsonpath='{ .data.ca\.crt }' | base64 --decode"
 export KUBE_CA_CERT=$(kubectl get secret  $(kubectl get serviceaccount vault -o jsonpath='{.secrets[0].name}') -o jsonpath='{ .data.ca\.crt }' | base64 --decode)
 echo
-#p "KUBE_HOST is the endpoint of our kubernetes cluster control plane"
 export KUBE_HOST=$(kubectl config view --raw --minify --flatten -o jsonpath='{.clusters[].cluster.server}')
-#echo
-#pe "kubectl config view --raw --minify --flatten -o jsonpath='{.clusters[].cluster.server}'"
 echo
-#TODO issuer
-p "ISSUER is ..."
+p "Let's get oidc issuer"
 pe "kubectl proxy &"
 pe "curl --silent http://127.0.0.1:8001/.well-known/openid-configuration | jq -r .issuer"
 export ISSUER="$(curl --silent http://127.0.0.1:8001/.well-known/openid-configuration | jq -r .issuer)"
@@ -140,7 +131,7 @@ p "Creating devwebapp policy:"
 echo '"database/creds/readonly" {
   capabilities = ["read"]
 }'
-p "vault policy write devwebapp <filename>"
+p "vault policy write devwebapp devwebapp.hcl"
 vault policy write devwebapp - <<EOF
 path "database/creds/readonly" {
   capabilities = ["read"]
@@ -193,7 +184,14 @@ pe 'kubectl wait pod/devwebapp --for condition=ready'
 
 pe "kubectl get pods"
 
+pe "kubectl describe pod devwebapp"
+
+pe "kubectl exec -it devwebapp -c vault-agent -- cat /home/vault/config.json | jq ."
+
 pe "kubectl exec -it devwebapp -c devwebapp -- cat /vault/secrets/database-connect.txt"
 
+pe ""
+
 pe "sleep 60"
+
 pe "kubectl exec -it devwebapp -c devwebapp -- cat /vault/secrets/database-connect.txt"
