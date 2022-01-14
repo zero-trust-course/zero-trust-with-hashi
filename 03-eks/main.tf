@@ -42,6 +42,7 @@ module "eks" {
     {
       instance_type = "m4.large"
       asg_max_size  = 5
+      asg_desired_capacity = 2
     }
   ]
 }
