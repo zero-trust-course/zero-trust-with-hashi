@@ -204,4 +204,4 @@ pe 'cat frontend.yaml'
 pe 'kubectl apply -f frontend.yaml'
 pe 'cat /02-hcp/intentions.yaml'
 pe 'kubectl apply -f /02-hcp/intentions.yaml'
-p 'Browse to https://${TRAEFIK_SVC}'
+p "Browse to https://${TRAEFIK_SVC}"
